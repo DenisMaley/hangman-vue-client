@@ -19,7 +19,7 @@ npm run build
 > To set up server for the client check this [repo](https://github.com/DenisMaley/hangman-api)
 
 ## Built with
-- [Vue](https://vuejs.org/) - A progressive JavaScript framework
+- [Vue](https://vuejs.org/) - A JavaScript framework
 - [Vue-router](https://router.vuejs.org/) - The official router for Vue.js
 - [Vuex](https://vuex.vuejs.org/) - The state manager for Vue.js
-- [Axios](https://github.com/axios/axios) - Promise based HTTP client for the browser and node.js
+- [Axios](https://github.com/axios/axios) - Promise based HTTP client
