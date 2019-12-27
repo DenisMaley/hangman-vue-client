@@ -21,12 +21,9 @@
     },
     methods: {
       logout: function () {
-        console.log('before: ', this.isLoggedIn);
         this.$store.dispatch('logout')
         .then(() => {
-          console.log('before 2: ', this.isLoggedIn);
           this.$router.push('/login');
-          console.log('before 3: ', this.isLoggedIn);
         })
       }
     },
@@ -67,5 +64,16 @@
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+button {
+  margin-top: 20px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 15px;
+}
+button:hover {
+    background-color: #e6e6e6;
+    border-color: #adadad;
 }
 </style>

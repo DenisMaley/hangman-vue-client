@@ -8,7 +8,8 @@ export default new Vuex.Store({
 	state: {
   		status: '',
   		access_token: localStorage.getItem('access_token') || '',
-  		user : {}
+  		user: {},
+  		current_game: localStorage.getItem('current_game') || '',
 	},
 	mutations: {
 		auth_request(state){
@@ -37,7 +38,7 @@ export default new Vuex.Store({
 	                const user = resp.data.username
 	                localStorage.setItem('access_token', access_token)
 	                // Add the following line:
-	                axios.defaults.headers.common['Authorization'] = access_token
+	                axios.defaults.headers.common['Authorization'] = 'Bearer ' + access_token
 	                commit('auth_success', access_token, user)
 	                resolve(resp)
 	            })
@@ -57,7 +58,7 @@ export default new Vuex.Store({
 	                const user = resp.data.username
 	                localStorage.setItem('access_token', access_token)
 	                // Add the following line:
-	                axios.defaults.headers.common['Authorization'] = access_token
+	                axios.defaults.headers.common['Authorization'] = 'Bearer ' + access_token
 	                commit('auth_success', access_token, user)
 	                resolve(resp)
 	            })
@@ -69,16 +70,33 @@ export default new Vuex.Store({
 	        })
 	    },
 	  	logout({commit}){
+	  	    // Todo make a call to API to remove the token properly
 		    return new Promise((resolve, reject) => {
 		      	commit('logout')
 		      	localStorage.removeItem('access_token')
+		      	localStorage.removeItem('current_game')
 		      	delete axios.defaults.headers.common['Authorization']
 		      	resolve()
 		    })
-	  	}
+	  	},
+	  	initialize_game({commit}){
+	        return new Promise((resolve, reject) => {
+	            axios({url: 'http://localhost:5000/api/games', method: 'POST' })
+	            .then(resp => {
+	                const current_game = resp.data
+	                localStorage.setItem('current_game', JSON.stringify(current_game))
+	                resolve(resp)
+	            })
+	            .catch(err => {
+	                localStorage.removeItem('current_game')
+	                reject(err)
+	            })
+	        })
+	    },
 	},
 	getters : {
 	  isLoggedIn: state => !!state.access_token,
 	  authStatus: state => state.status,
+	  currentGame: state => JSON.parse(state.current_game),
 	}
 })
