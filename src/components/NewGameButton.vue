@@ -1,16 +1,19 @@
 <template>
-  <div>
-    <button @click="initialize_game()">New Game</button>
-  </div>
+    <div>
+        <button @click="initialize_game()">New Game</button>
+    </div>
 </template>
 <script>
-	export default {
-		methods: {
-		 	initialize_game: function () {
-		   		this.$store.dispatch('initialize_game')
-		   		.then(() => this.$router.push('/game'))
-		   		.catch(err => console.log(err))
-		   	}
-		}
-	}
+    export default {
+        methods: {
+            initialize_game: function () {
+                const path = '/game';
+                if (this.$route.path === path) {
+                    this.$router.go()
+                } else {
+                    this.$router.push(path)
+                }
+            }
+        }
+    }
 </script>

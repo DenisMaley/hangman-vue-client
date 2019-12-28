@@ -1,23 +1,20 @@
 <template>
     <div class="home">
-        <img src="../assets/logo.png">
-        <NewGameButton v-if="isLoggedIn"/>
+        <Game/>
+        <NewGameButton/>
     </div>
 </template>
 
 <script>
     // @ is an alias to /src
+    import Game from '@/components/Game.vue'
     import NewGameButton from '@/components/NewGameButton.vue'
 
     export default {
-        name: 'home',
-        computed: {
-            isLoggedIn() {
-                return this.$store.getters.isLoggedIn
-            }
-        },
+        name: 'game',
         components: {
+            Game,
             NewGameButton
-        }
+        },
     }
 </script>
