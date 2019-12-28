@@ -18,6 +18,8 @@ npm run build
 
 > To set up server for the client check this [repo](https://github.com/DenisMaley/hangman-api)
 
+> Check .env to set base URL
+
 ## Built with
 - [Vue](https://vuejs.org/) - A JavaScript framework
 - [Vue-router](https://router.vuejs.org/) - The official router for Vue.js

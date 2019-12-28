@@ -56,7 +56,7 @@
             }
         },
         created() {
-            axios({url: 'http://localhost:5000/api/games', method: 'POST'})
+            axios({url: `/games`, method: 'POST'})
                 .then(response => (this.current_game = response.data))
                 .catch(err => console.log(err))
         },
@@ -77,7 +77,7 @@
                     letter: letter,
                 };
                 axios({
-                    url: 'http://localhost:5000/api/game/' + this.current_game.id + '/turn',
+                    url: `/game/${this.current_game.id}/turn`,
                     data: turn,
                     method: 'POST'
                 })
