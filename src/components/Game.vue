@@ -5,11 +5,11 @@
             Lives: {{current_game.lives}}
         </div>
         <div v-if="isSuccess">
-            <div class="disguisedWord"> You won! Your score: {{current_game.score}} %</div>
+            <div class="disguisedWord"> You won! Your score: {{Number(current_game.score.toFixed(2))}} %</div>
             <img src="../assets/success.gif">
         </div>
         <div v-if="isFailure">
-            <div class="disguisedWord"> You failed! Your score: {{current_game.score}} %</div>
+            <div class="disguisedWord"> You failed! Your score: {{Number(current_game.score.toFixed(2))}} %</div>
             <img src="../assets/failure.gif">
         </div>
         <div class="disguisedWord">
